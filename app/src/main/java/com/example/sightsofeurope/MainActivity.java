@@ -1,11 +1,13 @@
 package com.example.sightsofeurope;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,13 +17,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView firstTextView = (TextView) findViewById(R.id.firstTextView);
+        // Sets the font
+        TextView firstTextView = findViewById(R.id.firstTextView);
         Typeface tfFirstTextView = Typeface.createFromAsset(getAssets(), "fonts/Orienta-Regular.ttf");
         firstTextView.setTypeface(tfFirstTextView);
 
-        Button startButton = (Button) findViewById(R.id.startButton);
+        Button startButton = findViewById(R.id.startButton);
         Typeface tfStartButton = Typeface.createFromAsset(getAssets(), "fonts/Orienta-Regular.ttf");
         startButton.setTypeface(tfStartButton);
+
+        // Listener for the button
         startButton.setOnClickListener(new View.OnClickListener(){
 
             @Override

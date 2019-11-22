@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">SightsOfEurope</string>
+
+    <string-array name="countries">
+        <item>Austria</item>
+        <item>Belgium</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Greece</item>
+        <item>Hungary</item>
+        <item>Italy</item>
+    </string-array>
+
+    <string-array name="images">
+        <item>R.drawable.cover_at</item>
+        <item>R.drawable.cover_be</item>
+        <item>R.drawable.cover_fr</item>
+        <item>R.drawable.cover_de</item>
+        <item>R.drawable.cover_gr</item>
+        <item>R.drawable.cover_hu</item>
+        <item>R.drawable.cover_it</item>
+    </string-array>
+
 </resources>
