@@ -26,13 +26,27 @@ public class MainActivity extends AppCompatActivity {
         Typeface tfStartButton = Typeface.createFromAsset(getAssets(), "fonts/Orienta-Regular.ttf");
         startButton.setTypeface(tfStartButton);
 
-        // Listener for the button
+        Button loginButton = findViewById(R.id.loginButton);
+        Typeface tfLoginButton = Typeface.createFromAsset(getAssets(), "fonts/Orienta-Regular.ttf");
+        loginButton.setTypeface(tfLoginButton);
+
+        // Listener for the Explore button
         startButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v){
                 Intent startIntent = new Intent(getApplicationContext(), CountryListActivity.class);
                 startActivity(startIntent);
+            }
+        });
+
+        // Listener for the Login button
+        loginButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(loginIntent);
             }
         });
     }
