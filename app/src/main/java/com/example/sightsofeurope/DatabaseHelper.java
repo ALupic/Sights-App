@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "register.db";
     public static final String TABLE_NAME = "registeruser";
-    public static final String COL_1 = "ID";
+    //public static final String COL_1 = "ID";
     public static final String COL_2 = "username";
     public static final String COL_3 = "password";
 
@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE registeruser (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+        db.execSQL("CREATE TABLE registeruser (username TEXT PRIMARY KEY, password TEXT)");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUser(String username, String password){
-        String[] columns = { COL_1 };
+        String[] columns = { COL_2 };
         SQLiteDatabase db = getReadableDatabase();
         String selection = COL_2 + "=?" + " and " + COL_3 + "=?";
         String[] selectionArgs = { username, password };
