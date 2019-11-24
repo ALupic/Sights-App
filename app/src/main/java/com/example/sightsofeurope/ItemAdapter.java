@@ -1,6 +1,7 @@
 package com.example.sightsofeurope;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,10 @@ public class ItemAdapter extends BaseAdapter {
     String[] images;
     Typeface font;
 
+    DatabaseHelper db;
+    Resources resources;
+
+    /*
     int[] imageIds = {
             R.drawable.cover_at,
             R.drawable.cover_be,
@@ -25,6 +30,8 @@ public class ItemAdapter extends BaseAdapter {
             R.drawable.cover_hu,
             R.drawable.cover_it
     };
+    */
+    int[] imageIds;
 
 
     public ItemAdapter(Context cx, String[] c, String[] i){
@@ -32,6 +39,14 @@ public class ItemAdapter extends BaseAdapter {
         images = i;
         font = Typeface.createFromAsset(cx.getAssets(), "fonts/Orienta-Regular.ttf");
         mInflater = (LayoutInflater) cx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    //    db = new DatabaseHelper(cx);
+        resources = cx.getResources();
+        imageIds = new int[i.length];
+
+        for(int pos=0; pos<i.length; pos++){
+            int resourceId = resources.getIdentifier(i[pos], "drawable", cx.getPackageName());
+            imageIds[pos] = resourceId;
+        }
     }
 
     @Override
@@ -60,6 +75,7 @@ public class ItemAdapter extends BaseAdapter {
         String image = images[position];
 
         countryNameTextView.setText(name);
+        /*
         if(position==0){
             countryImageView.setImageResource(imageIds[0]);
         }else if (position==1){
@@ -74,9 +90,9 @@ public class ItemAdapter extends BaseAdapter {
             countryImageView.setImageResource(imageIds[5]);
         }else{
             countryImageView.setImageResource(imageIds[6]);
-
         }
-
+*/
+        countryImageView.setImageResource(imageIds[position]);
         return v;
     }
 }

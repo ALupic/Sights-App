@@ -17,10 +17,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
 
+    DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DatabaseHelper db = new DatabaseHelper(this);
 
         // Preferences setup for session purposes
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
