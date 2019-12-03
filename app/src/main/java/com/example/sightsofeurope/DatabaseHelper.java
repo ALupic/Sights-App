@@ -26,6 +26,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO country VALUES(1, 'Austria', 'cover_at', 'cover_at', 'Vienna', '24', '24', 'German', 'Christian', 'Euro', 'Osterreich')");
         db.execSQL("INSERT INTO country VALUES(2, 'Belgium', 'cover_be', 'cover_be', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(3, 'Czech Republic', 'cover_cz', 'cover_cz', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(4, 'France', 'cover_fr', 'cover_fr', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(5, 'Germany', 'cover_de', 'cover_de', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(6, 'Greece', 'cover_gr', 'cover_gr', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(7, 'Hungary', 'cover_hu', 'cover_hu', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(8, 'Italy', 'cover_it', 'cover_it', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(9, 'Ireland', 'cover_ie', 'cover_ie', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(10, 'Norway', 'cover_no', 'cover_no', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(11, 'Portugal', 'cover_pt', 'cover_pt', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(12, 'Spain', 'cover_es', 'cover_es', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(13, 'Turkey', 'cover_tr', 'cover_tr', 'Brussels', '24', '24', 'German', 'Christian', 'Euro', 'Belgie')");
     }
 
     @Override
