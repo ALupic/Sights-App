@@ -71,7 +71,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    // DATABASE - NEW
     public ArrayList<Country> getCountries(){
         ArrayList<Country> countries = new ArrayList<Country>();
         SQLiteDatabase db = getReadableDatabase();
@@ -91,5 +90,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return countries;
+    }
+
+    public Country findCountryById(int id){
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM country WHERE id = " + id + " ;";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+
+        Country newsArticle = new Country(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
+                cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10));
+
+        cursor.close();
+        db.close();
+
+        return newsArticle;
     }
 }

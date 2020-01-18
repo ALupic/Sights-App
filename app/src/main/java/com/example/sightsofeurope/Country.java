@@ -1,4 +1,5 @@
 package com.example.sightsofeurope;
+import java.io.Serializable;
 
 public class Country {
     private int id;
@@ -25,6 +26,10 @@ public class Country {
         this.religion = religion;
         this.currency = currency;
         this.content = content;
+    }
+
+    public Country(){
+
     }
 
     public int getId() {
