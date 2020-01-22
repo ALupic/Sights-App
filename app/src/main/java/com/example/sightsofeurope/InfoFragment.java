@@ -1,11 +1,17 @@
 package com.example.sightsofeurope;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -13,6 +19,13 @@ import android.view.ViewGroup;
  */
 public class InfoFragment extends Fragment {
 
+    TextView countryCityTW;
+    TextView countryAreaTW;
+    TextView countryPopulationTW;
+    TextView countryLanguageTW;
+    ImageView countryFlagIW;
+
+    DatabaseHelper db;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -23,7 +36,38 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_info, container, false);
+
+        db = new DatabaseHelper(v.getContext());
+
+        countryCityTW = v.findViewById(R.id.countryCityTW);
+        countryAreaTW = v.findViewById(R.id.countryAreaTW);
+        countryPopulationTW = v.findViewById(R.id.countryPopulationTW);
+        countryLanguageTW = v.findViewById(R.id.countryLanguageTW);
+        countryFlagIW = v.findViewById(R.id.countryFlagIW);
+        String stringCapital = getActivity().getIntent().getStringExtra("capital");
+        String stringArea = getActivity().getIntent().getStringExtra("area");
+        String stringPopulation = getActivity().getIntent().getStringExtra("population");
+        String stringLanguage = getActivity().getIntent().getStringExtra("language");
+        String stringFlag = getActivity().getIntent().getStringExtra("flag");
+
+        countryCityTW.setText(stringCapital);
+        countryAreaTW.setText(stringArea);
+        countryPopulationTW.setText(stringPopulation);
+        countryLanguageTW.setText(stringLanguage);
+
+        // image setup
+//        String imgName = country.getCover();
+        Context c = v.getContext();
+        Resources res = getResources();
+        //int resourceId = res.getIdentifier(imgName, "drawable", c.getPackageName());
+        int resourceId = res.getIdentifier(stringFlag, "drawable", c.getPackageName());         // REVIEW
+
+        countryFlagIW.setImageResource(resourceId);
+
+        return v;
+
     }
 
 }

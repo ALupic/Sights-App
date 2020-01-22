@@ -34,6 +34,16 @@ public class CountryActivity extends AppCompatActivity {
         Country country = (Country) in.getSerializableExtra("country");
         String transCover = (String) in.getSerializableExtra("cover");                          // REVIEW
 
+        //Data transfer to Fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("capital", "From Activity");
+        bundle.putString("area", "From Activity");
+        bundle.putString("population", "From Activity");
+        bundle.putString("language", "From Activity");
+        bundle.putString("flag", "From Activity");
+        InfoFragment fragObj = new InfoFragment();
+        fragObj.setArguments(bundle);
+
         imageView2 = findViewById(R.id.imageView2);
         tabLayout = findViewById(R.id.tablayout);
         tabInfo = findViewById(R.id.tabInfo);
@@ -49,12 +59,14 @@ public class CountryActivity extends AppCompatActivity {
         Resources res = getResources();
         //int resourceId = res.getIdentifier(imgName, "drawable", c.getPackageName());
         int resourceId = res.getIdentifier(transCover, "drawable", c.getPackageName());         // REVIEW
+
         imageView2.setImageResource(resourceId);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             @Override
             public void onTabSelected(TabLayout.Tab tab){
                 viewPager.setCurrentItem(tab.getPosition());
+
 
             }
 

@@ -56,6 +56,11 @@ public class CountryListActivity extends AppCompatActivity {
                 int countryId = allCountries.get(i).getId();
                 Country country = db.findCountryById(countryId);
                 showCountryActivity.putExtra("cover", country.getCover());
+                showCountryActivity.putExtra("capital", country.getCapital());
+                showCountryActivity.putExtra("area", country.getArea());
+                showCountryActivity.putExtra("population", country.getPopulation());
+                showCountryActivity.putExtra("language", country.getLanguage());
+                showCountryActivity.putExtra("flag", country.getFlag());
                 startActivity(showCountryActivity);
             }
         });
