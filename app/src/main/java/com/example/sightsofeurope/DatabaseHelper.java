@@ -29,14 +29,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO country VALUES(3, 'Czech Republic', 'flag_cz', 'cover_cz', 'Prague', '78.866 km2', '10,703,353', 'Czech', 'Christian', 'Euro', 'Belgie')");
         db.execSQL("INSERT INTO country VALUES(4, 'France', 'flag_fr', 'cover_fr', 'Paris', '551.695 km2', '65,213,401', 'French', 'Christian', 'Euro', 'Belgie')");
         db.execSQL("INSERT INTO country VALUES(5, 'Germany', 'flag_de', 'cover_de', 'Berlin', '357.386 km2', '83,753,511', 'German', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(6, 'Greece', 'flag_gr', 'cover_gr', 'Athens', '131.940 km2', '10,444,289', 'Greek', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(7, 'Hungary', 'flag_hu', 'cover_hu', 'Budapest', '93.030 km2', '9,671,013', 'Hungarian', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(8, 'Italy', 'flag_it', 'cover_it', 'Rome', '301.338 km2', '60,503,793', 'Italian', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(9, 'Ireland', 'flag_ie', 'cover_ie', 'Dublin', '70.273 km2', '4,921,183', 'Irish, English', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(10, 'Norway', 'flag_no', 'cover_no', 'Oslo', '385.178 km2', '5,403,544', 'Norwegian', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(11, 'Portugal', 'flag_pt', 'cover_pt', 'Lisbon', '91.568 km2', '10,208,226', 'Portuguese', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(12, 'Spain', 'flag_es', 'cover_es', 'Madrid', '498.511 km2', '46,763,147', 'Spanish', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(13, 'Turkey', 'flag_tr', 'cover_tr', 'Ankara', '783.562 km2', '84,090,239', 'Turkish', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(6, 'Great Britain', 'flag_uk', 'cover_uk', 'London', '242.495 km2', '66,595,844', 'English', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(7, 'Greece', 'flag_gr', 'cover_gr', 'Athens', '131.940 km2', '10,444,289', 'Greek', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(8, 'Hungary', 'flag_hu', 'cover_hu', 'Budapest', '93.030 km2', '9,671,013', 'Hungarian', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(9, 'Italy', 'flag_it', 'cover_it', 'Rome', '301.338 km2', '60,503,793', 'Italian', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(10, 'Ireland', 'flag_ie', 'cover_ie', 'Dublin', '70.273 km2', '4,921,183', 'Irish, English', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(11, 'Norway', 'flag_no', 'cover_no', 'Oslo', '385.178 km2', '5,403,544', 'Norwegian', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(12, 'Portugal', 'flag_pt', 'cover_pt', 'Lisbon', '91.568 km2', '10,208,226', 'Portuguese', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(13, 'Spain', 'flag_es', 'cover_es', 'Madrid', '498.511 km2', '46,763,147', 'Spanish', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(14, 'Turkey', 'flag_tr', 'cover_tr', 'Ankara', '783.562 km2', '84,090,239', 'Turkish', 'Christian', 'Euro', 'Belgie')");
     }
 
     @Override

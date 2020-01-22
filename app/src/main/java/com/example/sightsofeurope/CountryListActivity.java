@@ -55,6 +55,7 @@ public class CountryListActivity extends AppCompatActivity {
                 //  showArticleActivity.putExtra("com.example.news24.ITEM_INDEX", position);
                 int countryId = allCountries.get(i).getId();
                 Country country = db.findCountryById(countryId);
+                showCountryActivity.putExtra("name", country.getName());
                 showCountryActivity.putExtra("cover", country.getCover());
                 showCountryActivity.putExtra("capital", country.getCapital());
                 showCountryActivity.putExtra("area", country.getArea());

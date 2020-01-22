@@ -10,10 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class CountryActivity extends AppCompatActivity {
 
     ImageView imageView2;
+    TextView countryNameTW;
     TabLayout tabLayout;
     TabItem tabInfo;
     TabItem tabPlaces;
@@ -32,6 +34,7 @@ public class CountryActivity extends AppCompatActivity {
 
         Intent in = getIntent();
         Country country = (Country) in.getSerializableExtra("country");
+        String transName = (String) in.getSerializableExtra("name");
         String transCover = (String) in.getSerializableExtra("cover");                          // REVIEW
 
         //Data transfer to Fragment
@@ -45,6 +48,7 @@ public class CountryActivity extends AppCompatActivity {
         fragObj.setArguments(bundle);
 
         imageView2 = findViewById(R.id.imageView2);
+        countryNameTW = findViewById(R.id.countryNameTW);
         tabLayout = findViewById(R.id.tablayout);
         tabInfo = findViewById(R.id.tabInfo);
         tabPlaces = findViewById(R.id.tabPlaces);
@@ -61,6 +65,8 @@ public class CountryActivity extends AppCompatActivity {
         int resourceId = res.getIdentifier(transCover, "drawable", c.getPackageName());         // REVIEW
 
         imageView2.setImageResource(resourceId);
+
+        countryNameTW.setText(transName);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             @Override
