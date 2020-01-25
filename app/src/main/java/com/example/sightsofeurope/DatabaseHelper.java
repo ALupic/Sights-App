@@ -34,10 +34,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO country VALUES(8, 'Hungary', 'flag_hu', 'cover_hu', 'Budapest', '93.030 km2', '9,671,013', 'Hungarian', 'Christian', 'Euro', 'Belgie')");
         db.execSQL("INSERT INTO country VALUES(9, 'Italy', 'flag_it', 'cover_it', 'Rome', '301.338 km2', '60,503,793', 'Italian', 'Christian', 'Euro', 'Belgie')");
         db.execSQL("INSERT INTO country VALUES(10, 'Ireland', 'flag_ie', 'cover_ie', 'Dublin', '70.273 km2', '4,921,183', 'Irish, English', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(11, 'Norway', 'flag_no', 'cover_no', 'Oslo', '385.178 km2', '5,403,544', 'Norwegian', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(12, 'Portugal', 'flag_pt', 'cover_pt', 'Lisbon', '91.568 km2', '10,208,226', 'Portuguese', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(13, 'Spain', 'flag_es', 'cover_es', 'Madrid', '498.511 km2', '46,763,147', 'Spanish', 'Christian', 'Euro', 'Belgie')");
-        db.execSQL("INSERT INTO country VALUES(14, 'Turkey', 'flag_tr', 'cover_tr', 'Ankara', '783.562 km2', '84,090,239', 'Turkish', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(11, 'Netherlands', 'flag_nl', 'cover_nl', 'Amsterdam', '41.543 km2', '17,118,616', 'Dutch', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(12, 'Norway', 'flag_no', 'cover_no', 'Oslo', '385.178 km2', '5,403,544', 'Norwegian', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(13, 'Portugal', 'flag_pt', 'cover_pt', 'Lisbon', '91.568 km2', '10,208,226', 'Portuguese', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(14, 'Spain', 'flag_es', 'cover_es', 'Madrid', '498.511 km2', '46,763,147', 'Spanish', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(15, 'Switzerland', 'flag_ch', 'cover_ch', 'Bern', '41.285 km2', '8,627,337', 'German, French, Italian, Romansh', 'Christian', 'Euro', 'Belgie')");
+        db.execSQL("INSERT INTO country VALUES(16, 'Turkey', 'flag_tr', 'cover_tr', 'Ankara', '783.562 km2', '84,090,239', 'Turkish', 'Christian', 'Euro', 'Belgie')");
     }
 
     @Override
