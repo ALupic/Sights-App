@@ -64,6 +64,8 @@ public class InfoFragment extends Fragment {
 
         countryFlagIW.setImageResource(resourceId);
 
+
+
         return v;
 
     }

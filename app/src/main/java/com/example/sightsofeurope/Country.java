@@ -12,9 +12,14 @@ public class Country {
     private String language;
     private String religion;
     private String currency;
+    private double bottomBoundary;
+    private double leftBoundary;
+    private double topBoundary;
+    private double rightBoundary;
     private String content;
 
-    public Country(int id, String name, String flag, String cover, String capital, String area, String population, String language, String religion, String currency, String content){
+    public Country(int id, String name, String flag, String cover, String capital, String area, String population, String language, String religion,
+                   String currency, double bottomBoundary, double leftBoundary, double topBoundary, double rightBoundary, String content){
         this.id = id;
         this.name = name;
         this.flag = flag;
@@ -25,6 +30,10 @@ public class Country {
         this.language = language;
         this.religion = religion;
         this.currency = currency;
+        this.bottomBoundary = bottomBoundary;
+        this.leftBoundary = leftBoundary;
+        this.topBoundary = topBoundary;
+        this.rightBoundary = rightBoundary;
         this.content = content;
     }
 
@@ -36,9 +45,7 @@ public class Country {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -110,6 +117,36 @@ public class Country {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public double getBottomBoundary() {
+        return bottomBoundary;
+    }
+
+    public void setBottomBoundary(double bottomBoundary) {
+        this.bottomBoundary = bottomBoundary;
+    }
+
+    public double getLeftBoundary() {
+        return leftBoundary;
+    }
+
+    public void setLeftBoundary(double leftBoundary) {
+        this.leftBoundary = leftBoundary;
+    }
+
+    public double getTopBoundary() { return topBoundary; }
+
+    public void setTopBoundary(double topBoundary) {
+        this.topBoundary = topBoundary;
+    }
+
+    public double getRightBoundary() {
+        return rightBoundary;
+    }
+
+    public void setRightBoundary(double rightBoundary) {
+        this.rightBoundary = rightBoundary;
     }
 
     public String getContent() {

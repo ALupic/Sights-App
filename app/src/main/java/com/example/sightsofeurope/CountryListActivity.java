@@ -52,6 +52,7 @@ public class CountryListActivity extends AppCompatActivity {
                 //  showArticleActivity.putExtra("com.example.news24.ITEM_INDEX", position);
                 int countryId = allCountries.get(i).getId();
                 Country country = db.findCountryById(countryId);
+                System.out.println("/////// THE BOUNDARY IS: " + country.getContent());
                 showCountryActivity.putExtra("name", country.getName());
                 showCountryActivity.putExtra("cover", country.getCover());
                 showCountryActivity.putExtra("capital", country.getCapital());
@@ -59,6 +60,10 @@ public class CountryListActivity extends AppCompatActivity {
                 showCountryActivity.putExtra("population", country.getPopulation());
                 showCountryActivity.putExtra("language", country.getLanguage());
                 showCountryActivity.putExtra("flag", country.getFlag());
+                showCountryActivity.putExtra("bottomBoundary", country.getBottomBoundary());
+                showCountryActivity.putExtra("leftBoundary", country.getLeftBoundary());
+                showCountryActivity.putExtra("topBoundary", country.getTopBoundary());
+                showCountryActivity.putExtra("rightBoundary", country.getRightBoundary());
                 startActivity(showCountryActivity);
             }
         });

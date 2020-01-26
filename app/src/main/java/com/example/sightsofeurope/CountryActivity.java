@@ -37,15 +37,25 @@ public class CountryActivity extends AppCompatActivity {
         String transName = (String) in.getSerializableExtra("name");
         String transCover = (String) in.getSerializableExtra("cover");                          // REVIEW
 
-        //Data transfer to Fragment
-        Bundle bundle = new Bundle();
-        bundle.putString("capital", "From Activity");
-        bundle.putString("area", "From Activity");
-        bundle.putString("population", "From Activity");
-        bundle.putString("language", "From Activity");
-        bundle.putString("flag", "From Activity");
+        //Data transfer to InfoFragment
+        Bundle infoBundle = new Bundle();
+        infoBundle.putString("capital", "From Activity");
+        infoBundle.putString("area", "From Activity");
+        infoBundle.putString("population", "From Activity");
+        infoBundle.putString("language", "From Activity");
+        infoBundle.putString("flag", "From Activity");
         InfoFragment fragObj = new InfoFragment();
-        fragObj.setArguments(bundle);
+        fragObj.setArguments(infoBundle);
+
+        //Data transfer to MapFragment
+        Bundle mapBundle = new Bundle();
+        mapBundle.putDouble("bottomBoundary", 1);
+        mapBundle.putDouble("leftBoundary", 1);
+        mapBundle.putDouble("topBoundary", 1);
+        mapBundle.putDouble("rightBoundary", 1);
+        mapBundle.putString("name", "From Activity");
+        MapFragment mapObj = new MapFragment();
+        mapObj.setArguments(mapBundle);
 
         imageView2 = findViewById(R.id.imageView2);
         countryNameTW = findViewById(R.id.countryNameTW);
