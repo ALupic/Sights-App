@@ -52,7 +52,7 @@ public class CountryListActivity extends AppCompatActivity {
                 //  showArticleActivity.putExtra("com.example.news24.ITEM_INDEX", position);
                 int countryId = allCountries.get(i).getId();
                 Country country = db.findCountryById(countryId);
-                System.out.println("/////// THE BOUNDARY IS: " + country.getContent());
+                showCountryActivity.putExtra("id", country.getId());
                 showCountryActivity.putExtra("name", country.getName());
                 showCountryActivity.putExtra("cover", country.getCover());
                 showCountryActivity.putExtra("capital", country.getCapital());

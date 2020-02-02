@@ -47,6 +47,10 @@ public class CountryActivity extends AppCompatActivity {
         InfoFragment fragObj = new InfoFragment();
         fragObj.setArguments(infoBundle);
 
+        //Data transfer to PlacesFragment
+        Bundle sightBundle = new Bundle();
+        sightBundle.putInt("id", 1);
+
         //Data transfer to MapFragment
         Bundle mapBundle = new Bundle();
         mapBundle.putDouble("bottomBoundary", 1);
