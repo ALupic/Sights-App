@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,32 +89,39 @@ public class PlacesFragment extends Fragment {
 
         SightAdapter sightAdapter = new SightAdapter(v.getContext(), sights, images);
         sightsListView.setAdapter(sightAdapter);
-        System.out.println("/////// FINISHED PLACES FRAGMENT");
 
 
-     /*   countriesListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        sightsListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-                Intent showCountryActivity = new Intent(view.getContext(), CountryActivity.class);
-                int selectedCountryId = adapterView.getId();
+                //int p = allSights.get(i).getId();
+                Intent showSightActivity = new Intent(view.getContext(), SightActivity.class);
+                int selectedSightId = adapterView.getId();
                 //  showArticleActivity.putExtra("com.example.news24.ITEM_INDEX", position);
-                int countryId = allSights.get(i).getId();
-                Country country = db.findCountryById(countryId);
-                System.out.println("/////// THE BOUNDARY IS: " + country.getContent());
-                showCountryActivity.putExtra("name", country.getName());
-                showCountryActivity.putExtra("cover", country.getCover());
-                showCountryActivity.putExtra("capital", country.getCapital());
-                showCountryActivity.putExtra("area", country.getArea());
-                showCountryActivity.putExtra("population", country.getPopulation());
-                showCountryActivity.putExtra("language", country.getLanguage());
-                showCountryActivity.putExtra("flag", country.getFlag());
-                showCountryActivity.putExtra("bottomBoundary", country.getBottomBoundary());
-                showCountryActivity.putExtra("leftBoundary", country.getLeftBoundary());
-                showCountryActivity.putExtra("topBoundary", country.getTopBoundary());
-                showCountryActivity.putExtra("rightBoundary", country.getRightBoundary());
-                startActivity(showCountryActivity);
+                int sightId = allSights.get(i).getId();
+                Sight sight = db.findSightById(sightId);
+                String selectedFromList = (String)sightsListView.getItemAtPosition(i);                      // Takes the name of the sight and compares it to the database to get the ID
+                for(int pos=0; pos< allSights.size(); pos++){
+                    if((allSights.get(pos).getName().equals(selectedFromList))){
+                        showSightActivity.putExtra("name", allSights.get(pos).getName());
+                        showSightActivity.putExtra("cover", allSights.get(pos).getCover());
+                        startActivity(showSightActivity);
+                    }
+                }
+
+
+      /*
+                System.out.println("/////// THE VALUE OF ITEM IS: " + selectedFromList);
+                System.out.println("/////// THE VALUE OF L IS: " + l);
+                System.out.println("/////// THE VALUE OF I IS: " + i);
+                System.out.println("/////// THE VALUE OF SIGHTID IS: " + sightId);
+                System.out.println("/////// THE BOUNDARY IS: " + sight.getContent());
+                showSightActivity.putExtra("name", sight.getName());
+                showSightActivity.putExtra("cover", sight.getCover());
+                startActivity(showSightActivity);
+                */
             }
-        });*/
+        });
         return v;
     }
 

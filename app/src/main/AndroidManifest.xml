@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/soe_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SightActivity"></activity>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDobRhASPn8XPoi9ylwSHvTKXK7e7WIgWY"/>
-        <activity android:name=".CountryActivity"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDobRhASPn8XPoi9ylwSHvTKXK7e7WIgWY" />
+
+        <activity android:name=".CountryActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".CountryListActivity" />

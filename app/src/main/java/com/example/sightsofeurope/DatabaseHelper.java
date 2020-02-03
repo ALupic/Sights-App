@@ -56,11 +56,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO country VALUES(28, 'Turkey', 'flag_tr', 'cover_tr', 'Ankara', '783.562 km2', '84,090,239', 'Turkish', 'Christian', 'Euro', 35.278243, 25.240364, 42.937417, 45.257453, 'Belgie')");
 
         // Insert sights
-        db.execSQL("INSERT INTO sight VALUES(1, 'Salzburg', 'cover_at', 'cover_at', 'City of Salzburg, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(2, 'Schoenbrunn', 'cover_at', 'cover_at', 'Palace of Schoenbrunn, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(3, 'Graz', 'cover_at', 'cover_at', 'City of Graz, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(4, 'Brugge', 'cover_be', 'cover_be', 'Historic centre of Brugge, Belgium', 2)");
-        db.execSQL("INSERT INTO sight VALUES(5, 'La Grand Place', 'cover_be', 'cover_be', 'La Grand Place of Brussels, Belgium', 2)");
+        // Austria
+        db.execSQL("INSERT INTO sight VALUES(1, 'Graz', 'sight_at_graz', 'sight_at_graz', 'City of Salzburg, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(2, 'Salzburg', 'cover_at', 'cover_at', 'City of Salzburg, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(3, 'Salzkammergut', 'sight_at_salzk', 'sight_at_salzk', 'City of Graz, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(4, 'Schoenbrunn', 'sight_at_schoenbrunn', 'sight_at_schoenbrunn', 'City of Graz, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(5, 'Semmering railway', 'sight_at_semmering', 'sight_at_semmering', 'City of Graz, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(6, 'Vienna', 'sight_at_vienna', 'sight_at_vienna', 'City of Graz, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(7, 'Wachau', 'sight_at_wachau', 'sight_at_wachau', 'City of Graz, Austria', 1)");
+
+        // Belgium
+        db.execSQL("INSERT INTO sight VALUES(8, 'Brugge', 'cover_be', 'cover_be', 'Historic centre of Brugge, Belgium', 2)");
+        db.execSQL("INSERT INTO sight VALUES(9, 'La Grand Place', 'sight_be_brussels', 'sight_be_brussels', 'La Grand Place of Brussels, Belgium', 2)");
     }
 
     @Override

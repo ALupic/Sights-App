@@ -103,6 +103,3 @@ public class CountryActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 }
-
-
-// https://stackoverflow.com/questions/27425026/add-textview-over-imageview-android
