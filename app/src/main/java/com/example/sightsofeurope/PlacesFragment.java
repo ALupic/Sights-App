@@ -105,6 +105,13 @@ public class PlacesFragment extends Fragment {
                     if((allSights.get(pos).getName().equals(selectedFromList))){
                         showSightActivity.putExtra("name", allSights.get(pos).getName());
                         showSightActivity.putExtra("cover", allSights.get(pos).getCover());
+                        showSightActivity.putExtra("content", allSights.get(pos).getContent());
+                        showSightActivity.putExtra("latitude", allSights.get(pos).getLatt());
+                        showSightActivity.putExtra("longitude", allSights.get(pos).getLongt());
+                        showSightActivity.putExtra("bottomBoundary", allSights.get(pos).getBottomBoundary());
+                        showSightActivity.putExtra("leftBoundary", allSights.get(pos).getLeftBoundary());
+                        showSightActivity.putExtra("topBoundary", allSights.get(pos).getTopBoundary());
+                        showSightActivity.putExtra("rightBoundary", allSights.get(pos).getRightBoundary());
                         startActivity(showSightActivity);
                     }
                 }

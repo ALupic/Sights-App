@@ -8,6 +8,8 @@ import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,6 +72,10 @@ public class CountryActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
+
+        // fonts
+        Typeface typefaceFont = Typeface.createFromAsset(getAssets(), "fonts/Orienta-Regular.ttf");
+        countryNameTW.setTypeface(typefaceFont);
 
         // image setup
 //        String imgName = country.getCover();

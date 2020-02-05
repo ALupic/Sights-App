@@ -8,18 +8,19 @@
         android:label="Sights of Europe"
         android:roundIcon="@mipmap/soe_logo_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity android:name=".SightActivity"></activity>
+        <activity android:name=".SightActivity" android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDobRhASPn8XPoi9ylwSHvTKXK7e7WIgWY" />
 
-        <activity android:name=".CountryActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".CountryListActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".CountryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".CountryListActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

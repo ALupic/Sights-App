@@ -18,7 +18,7 @@ public class PageAdapterSight extends FragmentPagerAdapter {
             case 0:
                 return new SightInfoFragment();
             case 1:
-                return new MapFragment();
+                return new SightMapFragment();
             case 2:
                 return new ForumFragment();
             default:

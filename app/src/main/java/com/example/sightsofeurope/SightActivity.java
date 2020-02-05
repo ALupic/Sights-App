@@ -37,6 +37,24 @@ public class SightActivity extends AppCompatActivity {
         String transName = (String) in.getSerializableExtra("name");
         String transCover = (String) in.getSerializableExtra("cover");                          // REVIEW
 
+        //Data transfer to SightInfoFragment
+        Bundle infoBundle = new Bundle();
+        infoBundle.putString("content", "From Activity");
+        SightInfoFragment fragObj = new SightInfoFragment();
+        fragObj.setArguments(infoBundle);
+
+        //Data transfer to SightMapFragment
+        Bundle mapBundle = new Bundle();
+        mapBundle.putString("name", "From Activity");
+        mapBundle.putDouble("latitude", 1);
+        mapBundle.putDouble("longitude", 1);
+        mapBundle.putDouble("bottomBoundary", 1);
+        mapBundle.putDouble("leftBoundary", 1);
+        mapBundle.putDouble("topBoundary", 1);
+        mapBundle.putDouble("rightBoundary", 1);
+        SightMapFragment mapObj = new SightMapFragment();
+        mapObj.setArguments(mapBundle);
+
         imageView2 = findViewById(R.id.sightImageView2);
         countryNameTW = findViewById(R.id.sightCountryNameTW);
         tabLayout = findViewById(R.id.sightTablayout);

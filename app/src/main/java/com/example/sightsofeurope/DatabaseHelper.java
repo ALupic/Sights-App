@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE registeruser (username TEXT PRIMARY KEY, password TEXT)");
         db.execSQL("CREATE TABLE country (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, flag TEXT, cover TEXT, capital TEXT, area TEXT, population TEXT, language TEXT, religion TEXT, currency TEXT, bottomBoundary REAL, leftBoundary REAL, topBoundary REAL, rightBoundary REAL, content TEXT)");
-        db.execSQL("CREATE TABLE sight (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, cover TEXT, listImage TEXT, content TEXT, country_id INTEGER, FOREIGN KEY(country_id) REFERENCES country(id))");
+        db.execSQL("CREATE TABLE sight (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, cover TEXT, listImage TEXT, latt REAL, longt REAL, bottomBoundary REAL, leftBoundary REAL, topBoundary REAL, rightBoundary REAL, content TEXT, country_id INTEGER, FOREIGN KEY(country_id) REFERENCES country(id))");
 
         // Insert countries
         db.execSQL("INSERT INTO country VALUES(1, 'Austria', 'flag_at', 'cover_at', 'Vienna', '83.858 km2', '8,984,550', 'German', 'Christian', 'Euro', 45.669698, 8.707491, 49.205013, 17.815156, 'Osterreich')");
@@ -57,17 +57,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Insert sights
         // Austria
-        db.execSQL("INSERT INTO sight VALUES(1, 'Graz', 'sight_at_graz', 'sight_at_graz', 'City of Salzburg, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(2, 'Salzburg', 'cover_at', 'cover_at', 'City of Salzburg, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(3, 'Salzkammergut', 'sight_at_salzk', 'sight_at_salzk', 'City of Graz, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(4, 'Schoenbrunn', 'sight_at_schoenbrunn', 'sight_at_schoenbrunn', 'City of Graz, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(5, 'Semmering railway', 'sight_at_semmering', 'sight_at_semmering', 'City of Graz, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(6, 'Vienna', 'sight_at_vienna', 'sight_at_vienna', 'City of Graz, Austria', 1)");
-        db.execSQL("INSERT INTO sight VALUES(7, 'Wachau', 'sight_at_wachau', 'sight_at_wachau', 'City of Graz, Austria', 1)");
+        db.execSQL("INSERT INTO sight VALUES(1, 'Graz', 'sight_at_graz', 'sight_at_graz', 47.071464, 15.439899, 46.609059, 14.619873, 47.458909, 16.232116, 'Historic city in the south of Austria.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(2, 'Salzburg', 'cover_at', 'cover_at', 47.805325, 13.045270, 47.553531, 12.595642, 48.015820, 13.418243, 'One of the best preserved city-centres north of the Alps, famous for its history, culture and attractions.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(3, 'Salzkammergut', 'sight_at_salzk', 'sight_at_salzk', 47.561619, 13.646698, 47.519575, 13.531025, 47.640697, 13.752468, 'Austrian resort area famous for the picturesque town of Hallstatt.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(4, 'Schoenbrunn', 'sight_at_schoenbrunn', 'sight_at_schoenbrunn', 48.185784, 16.312657, 48.174545, 16.291614, 48.190054, 16.324487, 'Rococo palace that served as the main summer residence of the Habsburg rulers located in Hietzing, Vienna.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(5, 'Semmering railway', 'sight_at_semmering', 'sight_at_semmering', 47.639006, 15.830390, 47.635102, 15.820272, 47.645858, 15.840443, 'The first mountain railway in Europe built with a standard gauge track.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(6, 'Vienna', 'sight_at_vienna', 'sight_at_vienna', 48.209104, 16.373871, 48.110685, 16.130798, 48.346254, 16.635483, 'Austria`s largest and most populous city.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(7, 'Wachau', 'sight_at_wachau', 'sight_at_wachau', 48.389437, 15.474718, 48.385162, 15.453818, 48.401946, 15.491541, 'Austrian valley with a picturesque landscape formed by the Danube river.', 1)");
 
         // Belgium
-        db.execSQL("INSERT INTO sight VALUES(8, 'Brugge', 'cover_be', 'cover_be', 'Historic centre of Brugge, Belgium', 2)");
-        db.execSQL("INSERT INTO sight VALUES(9, 'La Grand Place', 'sight_be_brussels', 'sight_be_brussels', 'La Grand Place of Brussels, Belgium', 2)");
+        db.execSQL("INSERT INTO sight VALUES(8, 'Brugge', 'cover_be', 'cover_be', 51.208031, 3.222308, 51.190283, 3.179908, 51.234909, 3.264022, 'Canal-based city in Belgium, often known as the Venice of the North.', 2)");
+        db.execSQL("INSERT INTO sight VALUES(9, 'La Grand Place', 'sight_be_brussels', 'sight_be_brussels', 50.846691, 4.352349, 50.846002, 4.350837, 50.847451, 4.353637, 'Brussels central square surrounded by opulent guildhalls, the Town Hall and the King`s House.', 2)");
     }
 
     @Override
@@ -153,7 +153,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         for(int i=0; i<cursor.getCount(); i++){
             Sight sight = new Sight(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
-                                      cursor.getString(3), cursor.getString(4), cursor.getInt(5));
+                                    cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5),
+                                    cursor.getDouble(6), cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9),
+                                    cursor.getString(10), cursor.getInt(11));
             sights.add(sight);
             cursor.moveToNext();
         }
@@ -173,7 +175,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         Sight sg = new Sight(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
-                             cursor.getString(3), cursor.getString(4), cursor.getInt(5));
+                cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5),
+                cursor.getDouble(6), cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9),
+                cursor.getString(10), cursor.getInt(11));
         cursor.close();
         db.close();
 

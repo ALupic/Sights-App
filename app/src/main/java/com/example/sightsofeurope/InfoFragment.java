@@ -3,6 +3,7 @@ package com.example.sightsofeurope;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,6 +23,11 @@ public class InfoFragment extends Fragment {
     TextView countryPopulationTW;
     TextView countryLanguageTW;
     ImageView countryFlagIW;
+
+    TextView countryTW1;
+    TextView countryTW2;
+    TextView countryTW3;
+    TextView countryTW4;
 
     DatabaseHelper db;
 
@@ -54,6 +60,22 @@ public class InfoFragment extends Fragment {
         countryAreaTW.setText(stringArea);
         countryPopulationTW.setText(stringPopulation);
         countryLanguageTW.setText(stringLanguage);
+
+        //font
+        countryTW1 = v.findViewById(R.id.countryTW1);
+        countryTW2 = v.findViewById(R.id.countryTW2);
+        countryTW3 = v.findViewById(R.id.countryTW3);
+        countryTW4 = v.findViewById(R.id.countryTW4);
+        Typeface typefaceFont = Typeface.createFromAsset(v.getContext().getAssets(), "fonts/Orienta-Regular.ttf");
+        countryCityTW.setTypeface(typefaceFont);
+        countryAreaTW.setTypeface(typefaceFont);
+        countryPopulationTW.setTypeface(typefaceFont);
+        countryLanguageTW.setTypeface(typefaceFont);
+        countryTW1.setTypeface(typefaceFont);
+        countryTW2.setTypeface(typefaceFont);
+        countryTW3.setTypeface(typefaceFont);
+        countryTW4.setTypeface(typefaceFont);
+
 
         // image setup
 //        String imgName = country.getCover();
