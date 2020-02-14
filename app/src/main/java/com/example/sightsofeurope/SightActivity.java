@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,6 +65,10 @@ public class SightActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.sightViewPager);
         pageAdapter = new PageAdapterSight(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
+
+        // fonts
+        Typeface typefaceFont = Typeface.createFromAsset(getAssets(), "fonts/Orienta-Regular.ttf");
+        countryNameTW.setTypeface(typefaceFont);
 
         Context c = SightActivity.this;
         Resources res = getResources();
