@@ -1,6 +1,7 @@
 package com.example.sightsofeurope;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Locale;
 
 
 /**
@@ -72,6 +75,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
 
         mapView = view.findViewById(R.id.mapView);
+
+        String languageToLoad = "en_GB";
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getResources().updateConfiguration(config,
+                getActivity().getResources().getDisplayMetrics());
 
         if(mapView!=null){
             mapView.onCreate(null);

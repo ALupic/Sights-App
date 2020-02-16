@@ -49,7 +49,8 @@
 
     <FrameLayout
         android:layout_width="412dp"
-        android:layout_height="599dp"
+        android:layout_height="635dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
@@ -60,28 +61,28 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tabInfo"
                 android:text="Info" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabPlaces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tabPlaces"
                 android:text="Places" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tabMap"
                 android:text="Map" />
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 
