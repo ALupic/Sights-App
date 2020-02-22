@@ -103,30 +103,15 @@ public class PlacesFragment extends Fragment {
                 String selectedFromList = (String)sightsListView.getItemAtPosition(i);                      // Takes the name of the sight and compares it to the database to get the ID
                 for(int pos=0; pos< allSights.size(); pos++){
                     if((allSights.get(pos).getName().equals(selectedFromList))){
+                        showSightActivity.putExtra("sight_id", allSights.get(pos).getId());
                         showSightActivity.putExtra("name", allSights.get(pos).getName());
                         showSightActivity.putExtra("cover", allSights.get(pos).getCover());
                         showSightActivity.putExtra("content", allSights.get(pos).getContent());
                         showSightActivity.putExtra("latitude", allSights.get(pos).getLatt());
                         showSightActivity.putExtra("longitude", allSights.get(pos).getLongt());
-                        showSightActivity.putExtra("bottomBoundary", allSights.get(pos).getBottomBoundary());
-                        showSightActivity.putExtra("leftBoundary", allSights.get(pos).getLeftBoundary());
-                        showSightActivity.putExtra("topBoundary", allSights.get(pos).getTopBoundary());
-                        showSightActivity.putExtra("rightBoundary", allSights.get(pos).getRightBoundary());
                         startActivity(showSightActivity);
                     }
                 }
-
-
-      /*
-                System.out.println("/////// THE VALUE OF ITEM IS: " + selectedFromList);
-                System.out.println("/////// THE VALUE OF L IS: " + l);
-                System.out.println("/////// THE VALUE OF I IS: " + i);
-                System.out.println("/////// THE VALUE OF SIGHTID IS: " + sightId);
-                System.out.println("/////// THE BOUNDARY IS: " + sight.getContent());
-                showSightActivity.putExtra("name", sight.getName());
-                showSightActivity.putExtra("cover", sight.getCover());
-                startActivity(showSightActivity);
-                */
             }
         });
         return v;

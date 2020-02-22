@@ -49,12 +49,15 @@ public class SightActivity extends AppCompatActivity {
         mapBundle.putString("name", "From Activity");
         mapBundle.putDouble("latitude", 1);
         mapBundle.putDouble("longitude", 1);
-        mapBundle.putDouble("bottomBoundary", 1);
-        mapBundle.putDouble("leftBoundary", 1);
-        mapBundle.putDouble("topBoundary", 1);
-        mapBundle.putDouble("rightBoundary", 1);
         SightMapFragment mapObj = new SightMapFragment();
         mapObj.setArguments(mapBundle);
+
+        //Data transfer to ForumFragment
+        Bundle forumBundle = new Bundle();
+        forumBundle.putString("name", "From Activity");
+        forumBundle.putDouble("sight_id", 1);
+        ForumFragment forumObj = new ForumFragment();
+        forumObj.setArguments(forumBundle);
 
         imageView2 = findViewById(R.id.sightImageView2);
         countryNameTW = findViewById(R.id.sightCountryNameTW);

@@ -28,10 +28,6 @@ public class SightMapFragment extends Fragment implements OnMapReadyCallback {
 
     double latt;
     double longt;
-    double doubleBB;
-    double doubleLB;
-    double doubleTB;
-    double doubleRB;
 
     DatabaseHelper db;
 
@@ -49,11 +45,6 @@ public class SightMapFragment extends Fragment implements OnMapReadyCallback {
         String stringName = getActivity().getIntent().getStringExtra("name");
 
         db = new DatabaseHelper(v.getContext());
-
-        doubleBB = getActivity().getIntent().getDoubleExtra("bottomBoundary", 1);
-        doubleLB = getActivity().getIntent().getDoubleExtra("leftBoundary", 1);
-        doubleTB = getActivity().getIntent().getDoubleExtra("topBoundary", 1);
-        doubleRB = getActivity().getIntent().getDoubleExtra("rightBoundary", 1);
 
         latt = getActivity().getIntent().getDoubleExtra("latitude", 1);
         longt = getActivity().getIntent().getDoubleExtra("longitude", 1);
@@ -88,9 +79,10 @@ public class SightMapFragment extends Fragment implements OnMapReadyCallback {
         map = googleMap;
 
         LatLng location = new LatLng(latt, longt);
-        LatLngBounds bounds = new LatLngBounds(new LatLng(doubleBB, doubleLB), new LatLng(doubleTB, doubleRB));
         map.addMarker(new MarkerOptions().position(location).title("Sight Location"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(location));
-        map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 1));
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15));
+        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
     }
 }

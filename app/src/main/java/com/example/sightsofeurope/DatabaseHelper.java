@@ -23,7 +23,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE registeruser (username TEXT PRIMARY KEY, password TEXT)");
         db.execSQL("CREATE TABLE country (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, flag TEXT, cover TEXT, capital TEXT, area TEXT, population TEXT, language TEXT, religion TEXT, currency TEXT, bottomBoundary REAL, leftBoundary REAL, topBoundary REAL, rightBoundary REAL, content TEXT)");
-        db.execSQL("CREATE TABLE sight (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, cover TEXT, listImage TEXT, latt REAL, longt REAL, bottomBoundary REAL, leftBoundary REAL, topBoundary REAL, rightBoundary REAL, content TEXT, country_id INTEGER, FOREIGN KEY(country_id) REFERENCES country(id))");
+        db.execSQL("CREATE TABLE sight (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, cover TEXT, listImage TEXT, latt REAL, longt REAL, content TEXT, country_id INTEGER, FOREIGN KEY(country_id) REFERENCES country(id))");
+        db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, user_username TEXT, sight_id INT, FOREIGN KEY(sight_id) REFERENCES sight(id))");
+        db.execSQL("CREATE TABLE comment (id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, user_username TEXT, time TEXT, topic_id INT, FOREIGN KEY(topic_id) REFERENCES topic(id))");
 
         // Insert countries
         db.execSQL("INSERT INTO country VALUES(1, 'Albania', 'flag_al', 'cover_al', 'Tirana', '28.748 km2', '2,876,591', 'Albanian', 'Muslim', 'Albanian lek', 39.400209, 17.763303, 42.970574, 21.872190, 'Shqiperia')");
@@ -76,51 +78,99 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Insert sights
         //Albania
-        db.execSQL("INSERT INTO sight VALUES(1, 'Berat', 'sight_al_berat', 'sight_al_berat', 40.709817, 19.943761, 40.684503, 19.915265, 40.745916, 19.980840, 'Historic city of Ottoman architecture and a 13th century castle.', 1)");
-        db.execSQL("INSERT INTO sight VALUES(2, 'Butrint', 'sight_al_butrint', 'sight_al_butrint', 39.744635, 20.025542, 39.734801, 20.009492, 39.753742, 20.032838, 'Ancient Greek city and a seat of a late Roman bishopric.', 1)");
-        db.execSQL("INSERT INTO sight VALUES(3, 'Gjirokaster', 'cover_al', 'cover_al', 40.075610, 20.137917, 40.062309, 20.124270, 40.098691, 20.153281, 'Historic city with 17th century two-storey houses, bazaar, mosques and churches.', 1)");
-        db.execSQL("INSERT INTO sight VALUES(4, 'Lake Ohrid', 'sight_al_ohrid', 'sight_al_ohrid', 40.913642, 20.659081, 40.865887, 20.578057, 41.106907, 20.775811, 'Natural and cultural heritage of Ohrid region.', 1)");
-        db.execSQL("INSERT INTO sight VALUES(5, 'Primeval beech forests', 'sight_al_primeval', 'sight_al_primeval', 42.379005, 20.097236, 42.374297, 20.092601, 42.382476, 20.100669, 'Gashi river and Rrajce beech forests.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(1, 'Berat', 'sight_al_berat', 'sight_al_berat', 40.709817, 19.943761, 'Historic city of Ottoman architecture and a 13th century castle.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(2, 'Butrint', 'sight_al_butrint', 'sight_al_butrint', 39.744635, 20.025542, 'Ancient Greek city and a seat of a late Roman bishopric.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(3, 'Gjirokaster', 'cover_al', 'cover_al', 40.075610, 20.137917, 'Historic city with 17th century two-storey houses, bazaar, mosques and churches.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(4, 'Lake Ohrid', 'sight_al_ohrid', 'sight_al_ohrid', 40.913642, 20.659081, 'Natural and cultural heritage of Ohrid region.', 1)");
+        db.execSQL("INSERT INTO sight VALUES(5, 'Primeval beech forests', 'sight_al_primeval', 'sight_al_primeval', 42.379005, 20.097236, 'Gashi river and Rrajce beech forests.', 1)");
 
         // Andorra
-        db.execSQL("INSERT INTO sight VALUES(6, 'Madriu-Perafita-Claror Valley', 'cover_ad', 'cover_ad', 42.496550, 1.593910, 42.488006, 1.584555, 42.501202, 1.596228, 'Glacial valley in southeastern Andorra.', 2)");
+        db.execSQL("INSERT INTO sight VALUES(6, 'Madriu-Perafita-Claror Valley', 'cover_ad', 'cover_ad', 42.496550, 1.593910, 'Glacial valley in southeastern Andorra.', 2)");
 
         // Armenia
-        db.execSQL("INSERT INTO sight VALUES(7, 'Azat valley', 'sight_am_azat', 'sight_am_azat', 40.330219, 44.963426, 40.161983, 44.765672, 40.439009, 45.012178, 'The complex of medieval buildings is set into a landscape of great natural beauty.', 3)");
-        db.execSQL("INSERT INTO sight VALUES(8, 'Echmiatsin', 'sight_am_echmiadzin', 'sight_am_echmiadzin', 40.166258, 44.295664, 40.126631, 44.273692, 40.197996, 44.345274, 'The cathedral and churches of Echmiatsin and the archaeological remains at Zvartnots.', 3)");
-        db.execSQL("INSERT INTO sight VALUES(9, 'Geghard Monastery', 'cover_am', 'cover_am', 40.140646, 44.818712, 40.138760, 44.817103, 40.142229, 44.819925, 'The monastery of Geghard contains a number of churches and tombs, most of them cut into the rock.', 3)");
-        db.execSQL("INSERT INTO sight VALUES(10, 'Haghpat Monastery', 'sight_am_haghpat', 'sight_am_haghpat', 41.093856, 44.711944, 41.092611, 44.710694, 41.094665, 44.712615, 'Medieval monastery complex in Haghpat.', 3)");
-        db.execSQL("INSERT INTO sight VALUES(11, 'Sanahin Monastery', 'sight_am_sanahin', 'sight_am_sanahin', 41.087477, 44.666283, 41.085277, 44.663590, 41.090970, 44.667517, 'Medieval monastery complex in Sanahin.', 3)");
-        db.execSQL("INSERT INTO sight VALUES(12, 'Zvartnots', 'sight_am_zvartnots', 'sight_am_zvartnots', 40.166258, 44.295664, 40.126631, 44.273692, 40.197996, 44.345274, 'The cathedral and churches of Echmiatsin and the archaeological remains at Zvartnots.', 3)");
+        db.execSQL("INSERT INTO sight VALUES(7, 'Azat valley', 'sight_am_azat', 'sight_am_azat', 40.330219, 44.963426, 'The complex of medieval buildings is set into a landscape of great natural beauty.', 3)");
+        db.execSQL("INSERT INTO sight VALUES(8, 'Echmiatsin', 'sight_am_echmiadzin', 'sight_am_echmiadzin', 40.166258, 44.295664, 'The cathedral and churches of Echmiatsin and the archaeological remains at Zvartnots.', 3)");
+        db.execSQL("INSERT INTO sight VALUES(9, 'Geghard Monastery', 'cover_am', 'cover_am', 40.140646, 44.818712, 'The monastery of Geghard contains a number of churches and tombs, most of them cut into the rock.', 3)");
+        db.execSQL("INSERT INTO sight VALUES(10, 'Haghpat Monastery', 'sight_am_haghpat', 'sight_am_haghpat', 41.095401, 44.711944, 'Medieval monastery complex in Haghpat.', 3)");
+        db.execSQL("INSERT INTO sight VALUES(11, 'Sanahin Monastery', 'sight_am_sanahin', 'sight_am_sanahin', 41.087477, 44.666283, 'Medieval monastery complex in Sanahin.', 3)");
+        db.execSQL("INSERT INTO sight VALUES(12, 'Zvartnots', 'sight_am_zvartnots', 'sight_am_zvartnots', 40.166258, 44.295664, 'The cathedral and churches of Echmiatsin and the archaeological remains at Zvartnots.', 3)");
 
         // Austria
-        db.execSQL("INSERT INTO sight VALUES(13, 'Graz', 'sight_at_graz', 'sight_at_graz', 47.071464, 15.439899, 46.609059, 14.619873, 47.458909, 16.232116, 'Historic city in the south of Austria.', 4)");
-        db.execSQL("INSERT INTO sight VALUES(14, 'Salzburg', 'cover_at', 'cover_at', 47.805325, 13.045270, 47.553531, 12.595642, 48.015820, 13.418243, 'One of the best preserved city-centres north of the Alps, famous for its history, culture and attractions.', 4)");
-        db.execSQL("INSERT INTO sight VALUES(15, 'Salzkammergut', 'sight_at_salzk', 'sight_at_salzk', 47.561619, 13.646698, 47.519575, 13.531025, 47.640697, 13.752468, 'Austrian resort area famous for the picturesque town of Hallstatt.', 4)");
-        db.execSQL("INSERT INTO sight VALUES(16, 'Schoenbrunn', 'sight_at_schoenbrunn', 'sight_at_schoenbrunn', 48.185784, 16.312657, 48.174545, 16.291614, 48.190054, 16.324487, 'Rococo palace that served as the main summer residence of the Habsburg rulers located in Hietzing, Vienna.', 4)");
-        db.execSQL("INSERT INTO sight VALUES(17, 'Semmering railway', 'sight_at_semmering', 'sight_at_semmering', 47.639006, 15.830390, 47.635102, 15.820272, 47.645858, 15.840443, 'The first mountain railway in Europe built with a standard gauge track.', 4)");
-        db.execSQL("INSERT INTO sight VALUES(18, 'Vienna', 'sight_at_vienna', 'sight_at_vienna', 48.209104, 16.373871, 48.110685, 16.130798, 48.346254, 16.635483, 'Austria`s largest and most populous city.', 4)");
-        db.execSQL("INSERT INTO sight VALUES(19, 'Wachau', 'sight_at_wachau', 'sight_at_wachau', 48.389437, 15.474718, 48.385162, 15.453818, 48.401946, 15.491541, 'Austrian valley with a picturesque landscape formed by the Danube river.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(13, 'Graz', 'sight_at_graz', 'sight_at_graz', 47.071464, 15.439899, 'Historic city in the south of Austria.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(14, 'Salzburg', 'cover_at', 'cover_at', 47.805325, 13.045270, 'One of the best preserved city-centres north of the Alps, famous for its history, culture and attractions.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(15, 'Salzkammergut', 'sight_at_salzk', 'sight_at_salzk', 47.561619, 13.646698, 'Austrian resort area famous for the picturesque town of Hallstatt.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(16, 'Schoenbrunn', 'sight_at_schoenbrunn', 'sight_at_schoenbrunn', 48.185784, 16.312657, 'Rococo palace that served as the main summer residence of the Habsburg rulers located in Hietzing, Vienna.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(17, 'Semmering railway', 'sight_at_semmering', 'sight_at_semmering', 47.639006, 15.830390, 'The first mountain railway in Europe built with a standard gauge track.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(18, 'Vienna', 'sight_at_vienna', 'sight_at_vienna', 48.209104, 16.373871, 'Austria`s largest and most populous city.', 4)");
+        db.execSQL("INSERT INTO sight VALUES(19, 'Wachau', 'sight_at_wachau', 'sight_at_wachau', 48.389437, 15.474718, 'Austrian valley with a picturesque landscape formed by the Danube river.', 4)");
 
         // Azerbaijan
-        db.execSQL("INSERT INTO sight VALUES(20, 'Baku Old Town', 'cover_az', 'cover_az', 40.365633, 49.835555, 40.360858, 49.831478, 40.370635, 49.839160, 'Walled City of Baku with Shirvanshah`s Palace and Maiden Tower.', 5)");
-        db.execSQL("INSERT INTO sight VALUES(21, 'Gobustan', 'sight_az_gobustan', 'sight_az_gobustan', 40.112349, 49.378236, 40.109501, 49.376337, 40.113465, 49.379341, 'Gobustan Rock Art Cultural Landscape.', 5)");
-        db.execSQL("INSERT INTO sight VALUES(22, 'Sheki', 'sight_az_sheki', 'sight_az_sheki', 41.203641, 47.169111, 41.150408, 47.124822, 41.262766, 47.208936, 'Historic Centre of Sheki with the Khan’s Palace.', 5)");
+        db.execSQL("INSERT INTO sight VALUES(20, 'Baku Old Town', 'cover_az', 'cover_az', 40.365633, 49.835555, 'Walled City of Baku with Shirvanshah`s Palace and Maiden Tower.', 5)");
+        db.execSQL("INSERT INTO sight VALUES(21, 'Gobustan', 'sight_az_gobustan', 'sight_az_gobustan', 40.112349, 49.378236, 'Gobustan Rock Art Cultural Landscape.', 5)");
+        db.execSQL("INSERT INTO sight VALUES(22, 'Sheki', 'sight_az_sheki', 'sight_az_sheki', 41.203641, 47.169111, 'Historic Centre of Sheki with the Khan’s Palace.', 5)");
 
         // Belarus
-        db.execSQL("INSERT INTO sight VALUES(23, 'Belavezhskaya Pushcha', 'sight_by_bp', 'sight_by_bp', 52.799044, 23.952238, 52.534203, 23.637754, 52.994555, 24.068968, 'Bialowieza Forest conserves a diverse complex of protected forest ecosystems.', 6)");
-        db.execSQL("INSERT INTO sight VALUES(24, 'Mir Castle', 'sight_by_mir', 'sight_by_mir', 53.451746, 26.472858, 53.449503, 26.470293, 53.452685, 26.474585, 'Mir Castle is an exceptional example of a central European castle, reflecting in its design and layout successive cultural influences.', 6)");
-        db.execSQL("INSERT INTO sight VALUES(25, 'Nesvizh', 'cover_by', 'cover_by', 53.225315, 26.676988, 53.200849, 26.658105, 53.251102, 26.706599, 'The Architectural, Residential and Cultural Complex of the Radziwill Family at Nesvizh.', 6)");
-        db.execSQL("INSERT INTO sight VALUES(26, 'Struve Geodetic Art', 'sight_by_sga', 'sight_by_sga', 52.799044, 23.952238, 51.056699, 22.436228, 56.463801, 33.202830, 'The Struve Geodetic Arc is a series of triangulation points, stretching over a distance of 2,820 kilometres from Hammerfest in Norway to the Black Sea.', 6)");
+        db.execSQL("INSERT INTO sight VALUES(23, 'Belavezhskaya Pushcha', 'sight_by_bp', 'sight_by_bp', 52.799044, 23.952238, 'Bialowieza Forest conserves a diverse complex of protected forest ecosystems.', 6)");
+        db.execSQL("INSERT INTO sight VALUES(24, 'Mir Castle', 'sight_by_mir', 'sight_by_mir', 53.451746, 26.472858, 'Mir Castle is an exceptional example of a central European castle, reflecting in its design and layout successive cultural influences.', 6)");
+        db.execSQL("INSERT INTO sight VALUES(25, 'Nesvizh', 'cover_by', 'cover_by', 53.225315, 26.676988, 'The Architectural, Residential and Cultural Complex of the Radziwill Family at Nesvizh.', 6)");
+        db.execSQL("INSERT INTO sight VALUES(26, 'Struve Geodetic Art', 'sight_by_sga', 'sight_by_sga', 52.799044, 23.952238, 'The Struve Geodetic Arc is a series of triangulation points, stretching over a distance of 2,820 kilometres from Hammerfest in Norway to the Black Sea.', 6)");
 
         // Belgium
-        db.execSQL("INSERT INTO sight VALUES(27, 'Brugge', 'cover_be', 'cover_be', 51.208031, 3.222308, 51.190283, 3.179908, 51.234909, 3.264022, 'Canal-based city in Belgium, often known as the Venice of the North.', 7)");
-        db.execSQL("INSERT INTO sight VALUES(28, 'La Grand Place', 'sight_be_brussels', 'sight_be_brussels', 50.846691, 4.352349, 50.846002, 4.350837, 50.847451, 4.353637, 'Brussels central square surrounded by opulent guildhalls, the Town Hall and the King`s House.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(27, 'Brugge', 'cover_be', 'cover_be', 51.208031, 3.222308, 'Canal-based city in Belgium, often known as the Venice of the North.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(28, 'Canal du Centre Lifts', 'sight_be_ccl', 'sight_be_ccl', 50.481132, 4.137372, 'The lifts on the old Canal du Centre are a series of four hydraulic boat lifts near the town of La Louvière in the Sillon industriel of Wallonia.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(29, 'Flemish Beguinages', 'sight_be_beguinages', 'sight_be_beguinages', 51.022975, 4.314559, 'Collections of small buildings used by Beguines. There are 13 of such in Belgium.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(30, 'La Grand Place', 'sight_be_brussels', 'sight_be_brussels', 50.846691, 4.352349, 'Brussels central square surrounded by opulent guildhalls, the Town Hall and the King`s House.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(31, 'Spiennes Flint Mines', 'sight_be_spiennes', 'sight_be_spiennes', 50.430838, 3.978661, 'The Neolithic flint mines at Spiennes are Europe`s largest and earliest neolithic mines, located close to the Walloon village of Spiennes.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(32, 'Stoclet House', 'sight_be_stoclet', 'sight_be_stoclet', 50.835291, 4.416111, 'The Stoclet Palace was a private mansion built by architect Josef Hoffmann between 1905 and 1911 in Brussels, for banker and art lover Adolphe Stoclet.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(33, 'Tournai Notre Dame', 'sight_be_tournai', 'sight_be_tournai', 50.606727, 3.388890, 'Notre-Dame Cathedral is a Roman Catholic church, see of the Diocese of Tournai in Tournai.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(34, 'Victor Horta Town Houses', 'sight_be_vhh', 'sight_be_vhh', 50.827961, 4.362276, 'The architect Victor Horta was well known for creating buildings in the Art Nouveau style fashionable at the time.', 7)");
+        db.execSQL("INSERT INTO sight VALUES(35, 'Walloon Mining Sites', 'sight_be_wms', 'sight_be_wms', 50.435271, 3.838376, 'UNESCO World Heritage Site comprising four sites in Wallonia in southern Belgium associated with the Belgian coal mining industry of the 19th and 20th centuries.', 7)");
 
         // Bosnia & Herzegovina
-        db.execSQL("INSERT INTO sight VALUES(29, 'Medieval Tombstones', 'sight_ba_stecci', 'sight_ba_stecci', 43.093135, 17.923089, 43.091247, 17.921780, 43.094318, 17.924559, 'Monolith medieval tombstones found in the Balkans.', 8)");
-        db.execSQL("INSERT INTO sight VALUES(30, 'Mostar', 'sight_ba_mostar', 'sight_ba_mostar', 43.345479, 17.807764, 43.331433, 17.794976, 43.358710, 17.816605, 'The Ottoman bridge, which crosses the Neretva river, was commissioned by Suleiman the Magnificent and completed in 1566/67.', 8)");
-        db.execSQL("INSERT INTO sight VALUES(31, 'Visegrad Bridge', 'cover_ba', 'cover_ba', 43.782240, 19.288387, 43.778429, 19.284568, 43.788561, 19.294610, 'The Mehmed Pasha Sokolovic Bridge, which crosses the Drina river, was completed in 1577.', 8)");
+        db.execSQL("INSERT INTO sight VALUES(36, 'Medieval Tombstones', 'sight_ba_stecci', 'sight_ba_stecci', 43.093135, 17.923089, 'Monolith medieval tombstones found in the Balkans.', 8)");
+        db.execSQL("INSERT INTO sight VALUES(37, 'Mostar', 'sight_ba_mostar', 'sight_ba_mostar', 43.345479, 17.807764, 'The Ottoman bridge, which crosses the Neretva river, was commissioned by Suleiman the Magnificent and completed in 1566/67.', 8)");
+        db.execSQL("INSERT INTO sight VALUES(38, 'Visegrad Bridge', 'cover_ba', 'cover_ba', 43.782240, 19.288387, 'The Mehmed Pasha Sokolovic Bridge, which crosses the Drina river, was completed in 1577.', 8)");
+
+        // Bulgaria
+        db.execSQL("INSERT INTO sight VALUES(39, 'Ancient Nessebar', 'sight_bg_nessebar', 'sight_bg_nessebar', 42.659023, 27.735289, 'Ancient part of town, situated on a peninsula (previously an island)..', 9)");
+        db.execSQL("INSERT INTO sight VALUES(40, 'Boyana Church', 'sight_bg_boyana', 'sight_bg_boyana', 42.650079, 23.266442, 'A medieval Bulgarian Orthodox church in Sofia.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(41, 'Ivanovo Rock-Hewn Churches', 'sight_bg_ivanovo', 'sight_bg_ivanovo', 43.716830, 25.966699, 'Monolithic churches, chapels and monasteries hewn out of solid rock.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(42, 'Kazanlak Thracian Tomb', 'sight_bg_kazanlak', 'sight_bg_kazanlak', 42.616667, 25.400000, 'Ancient tomb, part of a large Thracian necropolis.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(43, 'Madara Rider', 'sight_bg_madara', 'sight_bg_madara', 43.300023, 27.149903, 'An early medieval large rock relief carved on the Madara Plateau.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(44, 'Pirin National Park', 'sight_bg_pirin', 'sight_bg_pirin', 41.748389, 23.403913, 'Pirin Mountains National Park in the southwest of Bulgaria.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(45, 'Rila Monastery', 'cover_bg', 'cover_bg', 42.134014, 23.339897, 'Medieval monastery, one of the region`s most significant cultural, historical and architectural monuments.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(46, 'Srebarna Nature Reserve', 'sight_bg_srebarna', 'sight_bg_srebarna', 44.114439, 27.078061, 'A nature reserve and lake on the Via Pontica bird migration route.', 9)");
+        db.execSQL("INSERT INTO sight VALUES(47, 'Sveshtari Thracian Tomb', 'sight_bg_sveshtari', 'sight_bg_sveshtari', 43.666669, 26.666669, 'A Thracian tomb dating back to 3rd century BC.', 9)");
+
+        // Croatia
+        db.execSQL("INSERT INTO sight VALUES(48, 'Cathedral of St. James', 'sight_hr_stjames', 'sight_hr_stjames', 43.735661, 15.889147, 'The cathedral is a triple-nave basilica with three apses and a dome and is also one of the most important Renaissance monuments in the eastern Adriatic.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(49, 'Dubrovnik', 'sight_hr_dubrovnik', 'sight_hr_dubrovnik', 42.640196, 18.109217, 'Dubrovnik became a prosperous Maritime Republic during the Middle Ages, it became the only eastern Adriatic city-state to rival Venice.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(50, 'Euphrasian Basilica', 'sight_hr_porec', 'sight_hr_porec', 45.228626, 13.593140, 'The episcopal complex, with its striking mosaics dating back to the 6th century, is one of the best examples of early Byzantine art and architecture in the Mediterranean region and the world.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(51, 'Historical Split', 'sight_hr_split', 'sight_hr_split', 43.508307, 16.438976, 'The palace was built by the Roman emperor Diocletian at the turn of the fourth century AD, and later served as the basis of the city of Split.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(52, 'Northern Velebit', 'sight_hr_velebit', 'sight_hr_velebit', 44.775994, 14.972509, 'The Northern Velebit National Park is a national park in Croatia.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(53, 'Paklenica Primeval Forest', 'sight_hr_paklenica', 'sight_hr_paklenica', 44.354444, 15.479105, 'The Paklenica karst river canyon is a national park in Croatia.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(54, 'Plitvice Lakes', 'cover_hr', 'cover_hr', 44.878543, 15.601077, 'Plitvice Lakes National Park is one of the oldest and largest national parks in Croatia.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(55, 'St. Nicholas Fortress', 'sight_hr_stnicholas', 'sight_hr_stnicholas', 43.721852, 15.854528, 'The defensive system of Zadar and St. Nicholas Fortress in Šibenik.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(56, 'Stari Grad Plain', 'sight_hr_starigrad', 'sight_hr_starigrad', 43.186263, 16.627546, 'The Stari Grad Plain is an agricultural landscape that was set up by the ancient Greek colonists in the 4th century BC.', 10)");
+        db.execSQL("INSERT INTO sight VALUES(57, 'Trogir', 'sight_hr_trogir', 'sight_hr_trogir', 43.516954, 16.249828, 'Trogir`s rich culture was created under the influence of old Greeks, Romans, and Venetians.', 10)");
+
+        // Cyprus
+        db.execSQL("INSERT INTO sight VALUES(58, 'Choirokoitia', 'sight_cy_khirokitia', 'sight_cy_khirokitia', 34.797210, 33.343891, 'A Neolithic settlement whose remains and excavations shed light on the evolution of human society in the Eastern Mediterranean.', 11)");
+        db.execSQL("INSERT INTO sight VALUES(59, 'Paphos', 'cover_cy', 'cover_cy', 34.774440, 32.415243, 'An ancient city which, according to classical mythology, was the birthplace of Aphrodite.', 11)");
+        db.execSQL("INSERT INTO sight VALUES(60, 'Troödos Painted Churches', 'sight_cy_troodos', 'sight_cy_troodos', 34.920542, 33.095608, 'A complex of churches built in the time of the Byzantine Empire.', 11)");
+
+        // TOPICS
+        db.execSQL("INSERT INTO topic VALUES(1, 'How to reach the sight?', 'MauriceTraveller86', 2)");
+        db.execSQL("INSERT INTO topic VALUES(2, 'Working hours of restaurants.', 'MauriceTraveller86', 3)");
+        db.execSQL("INSERT INTO topic VALUES(3, 'Excursions from Gjirokaster?', 'JennyBalkans', 3)");
+        db.execSQL("INSERT INTO topic VALUES(4, 'DON`T GO! Ripped off', 'Lewis35e4', 42)");
+        db.execSQL("INSERT INTO topic VALUES(5, 'Is it worth visiting?', 'MauriceTraveller86', 42)");
+
+        // COMMENTS
+        db.execSQL("INSERT INTO comment VALUES(1, 'Does anyone know how to reach the sight from Tirana?', 'MauriceTraveller86', 'vreme', 2)");
+        db.execSQL("INSERT INTO comment VALUES(2, 'You can take the bus. It departs every day at 10 am and 6 pm.', 'User841', 'time', 2)");
+
+
     }
 
     @Override
@@ -207,8 +257,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         for(int i=0; i<cursor.getCount(); i++){
             Sight sight = new Sight(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
                                     cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5),
-                                    cursor.getDouble(6), cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9),
-                                    cursor.getString(10), cursor.getInt(11));
+                                    cursor.getString(6), cursor.getInt(7));
             sights.add(sight);
             cursor.moveToNext();
         }
@@ -229,12 +278,85 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Sight sg = new Sight(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
                 cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5),
-                cursor.getDouble(6), cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9),
-                cursor.getString(10), cursor.getInt(11));
+                cursor.getString(6), cursor.getInt(7));
         cursor.close();
         db.close();
 
         return sg;
+    }
+
+    public ArrayList<Topic> getTopics(){
+        ArrayList<Topic> topics = new ArrayList<Topic>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM topic ORDER BY id ASC;";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        for(int i=0; i<cursor.getCount(); i++){
+            Topic topic = new Topic(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                    cursor.getInt(3));
+            topics.add(topic);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return topics;
+    }
+
+    public Topic findTopicById(int id){
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM topic WHERE id = " + id + " ;";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+
+        Topic tp = new Topic(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                cursor.getInt(3));
+        cursor.close();
+        db.close();
+
+        return tp;
+    }
+
+    public ArrayList<Comment> getComments(){
+        ArrayList<Comment> comments = new ArrayList<Comment>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM comment ORDER BY id ASC;";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        for(int i=0; i<cursor.getCount(); i++){
+            Comment comment = new Comment(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                                          cursor.getString(3), cursor.getInt(4));
+            comments.add(comment);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return comments;
+    }
+
+    public Comment findCommentById(int id){
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM comment WHERE id = " + id + " ;";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+
+        Comment cmt = new Comment(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                                  cursor.getString(3), cursor.getInt(4));
+        cursor.close();
+        db.close();
+
+        return cmt;
     }
 
 }
