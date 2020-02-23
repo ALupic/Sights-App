@@ -322,6 +322,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return tp;
     }
 
+    public void addTopic(Topic topic){
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", topic.getName());
+        contentValues.put("user_username", topic.getUser_username());
+        contentValues.put("sight_id", topic.getSight_id());
+
+        long res = db.insert("topic", null, contentValues);
+
+        db.close();
+    }
+
     public ArrayList<Comment> getComments(){
         ArrayList<Comment> comments = new ArrayList<Comment>();
         SQLiteDatabase db = getReadableDatabase();
@@ -357,6 +369,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return cmt;
+    }
+
+    public void addComment(Comment comment){
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("content", comment.getContent());
+        contentValues.put("user_username", comment.getUser_username());
+        contentValues.put("time", comment.getTime());
+        contentValues.put("topic_id", comment.getTopic_id());
+
+        long res = db.insert("comment", null, contentValues);
+
+        db.close();
     }
 
 }

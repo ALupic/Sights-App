@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -20,7 +19,7 @@ import java.util.Date;
 
 import static com.example.sightsofeurope.MainActivity.MyPREFERENCES;
 
-public class TopicDialog extends DialogFragment {
+public class CommentDialog extends DialogFragment {
 
     public interface NoticeDialogListener {
         public void onDialogPositiveClick(DialogFragment dialog);
@@ -49,17 +48,15 @@ public class TopicDialog extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
 
         Bundle bundle = getArguments();
-        final View v = inflater.inflate(R.layout.dialog_addtopic, null);
-        final int sightId = bundle.getInt("sight_id");
+        final View v = inflater.inflate(R.layout.dialog_addcomment, null);
+        final int topicId = bundle.getInt("topic_id");                                              // ????????????????
 
         builder.setView(v)
                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("Positive button");
-                        EditText content = v.findViewById(R.id.editTextFirst);
-                        EditText comment = v.findViewById(R.id.editTextSecond);
-
+                        EditText content = v.findViewById(R.id.commentEditTextFirst);
                         SharedPreferences sharedPreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                         //String username = sharedPreferences.getString("username","");
                         DatabaseHelper db = new DatabaseHelper(getContext());
@@ -69,17 +66,13 @@ public class TopicDialog extends DialogFragment {
                         Date today = Calendar.getInstance().getTime();
                         String todayAsString = df.format(today);
 
-                        Topic newTopic = new Topic(1, content.getText().toString(), "unun", sightId);
+                        Comment newComment = new Comment(1, content.getText().toString(), "unun", todayAsString, topicId);
                         System.out.println("/////////////// THE VALUE IS: " + content.getText().toString());
-                        System.out.println("/////////////// SIGHT ID IS: " + sightId);
+                        System.out.println("/////////////// SIGHT ID IS: " + topicId);
 
-                        db.addTopic(newTopic);
-
-                        System.out.println("/////////////// NEW TOPIC ID IS: " + newTopic.getId());
-                        Comment newComment = new Comment(1, comment.getText().toString(), "unun", todayAsString, newTopic.getId());
                         db.addComment(newComment);
 
-                        //listener.onDialogPositiveClick(TopicDialog.this);
+                        //listener.onDialogPositiveClick(CommentDialog.this);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

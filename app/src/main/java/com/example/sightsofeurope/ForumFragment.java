@@ -82,13 +82,16 @@ public class ForumFragment extends Fragment {
             }
         });
 
-        // ADD TOPIC BUTTON
+        // ADD TOPIC BUTTON - Sending data from fragment to dialog
         addTopicButton = v.findViewById(R.id.addTopicButton);
 
         addTopicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TopicDialog topicDialog = new TopicDialog();
+                Bundle bundle = new Bundle();
+                bundle.putInt("sight_id", sightId);
+                topicDialog.setArguments(bundle);
                 topicDialog.show(getFragmentManager(), "missiles");
             }
         });

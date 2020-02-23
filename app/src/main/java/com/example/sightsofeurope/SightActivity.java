@@ -55,7 +55,7 @@ public class SightActivity extends AppCompatActivity {
         //Data transfer to ForumFragment
         Bundle forumBundle = new Bundle();
         forumBundle.putString("name", "From Activity");
-        forumBundle.putDouble("sight_id", 1);
+        forumBundle.putInt("sight_id", 1);
         ForumFragment forumObj = new ForumFragment();
         forumObj.setArguments(forumBundle);
 
